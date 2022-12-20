@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { HeaderContainer, HeaderList, NavLinkStyled } from "./Styled-Components/HeaderStyled";
+import { HeaderContainer, HeaderList, NavLinkStyled, Bars, BtnBars } from "./Styled-Components/HeaderStyled";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { BsCartFill } from "react-icons/bs";
-import { FaBars } from "react-icons/fa";
 
 const Header = () => {
   const [categories, setCategories] = useState([]);
@@ -18,25 +17,32 @@ const Header = () => {
   useEffect(() => {
     fetchCategories();
   }, []);
+  
+  const [clicked, setClicked] = useState(false);
 
+  const handleclick = () => {
+    setClicked(!clicked);
+  }
   return (
     <HeaderContainer>
       <NavLink to="/">
         <h1>Home</h1>
       </NavLink>
-      <HeaderList className="open">
+      <HeaderList className={clicked ? 'active' : ''}>
         {categories.map((category, index) => {
           return (
             <NavLinkStyled to={`/category/${category}`} key={index}>
-              <li>{category}</li>
+              <li onClick={handleclick}>{category}</li>
             </NavLinkStyled>
           );
         })}
         <NavLinkStyled to="/cart">
-          <li><BsCartFill/></li>
+          <li onClick={handleclick}><BsCartFill/></li>
         </NavLinkStyled>
       </HeaderList>
-      <FaBars style={{cursor: 'pointer'}} onClick={{}}/>
+      <BtnBars onClick={handleclick}>
+      <Bars/>
+      </BtnBars>
     </HeaderContainer>
   );
 };

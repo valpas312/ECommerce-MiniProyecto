@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { FaBars } from "react-icons/fa";
 
 export const HeaderContainer = styled.div`
     width: 100vw;
@@ -15,7 +16,12 @@ export const HeaderContainer = styled.div`
     left: 0;
     z-index: 1000;
 
-    
+    h1 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #333;
+        cursor: pointer;
+    }
 `
 
 export const HeaderList = styled.ul`
@@ -28,16 +34,34 @@ export const HeaderList = styled.ul`
     font-weight: 600;
     color: #333;
 
+    
     li {
         cursor: pointer;
         transition: all 0.3s ease-in-out;
-
+        
         &:hover {
             color: #f1f1f1;
             background-color: #333;
             padding: 0.5rem;
             border-radius: 5px;
         }
+    }
+
+    @media screen and (max-width: 768px) {
+        
+        display: none;
+
+        &.active{
+        display: flex;
+        position: absolute;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        left: -45px ;
+        top: 7.2vh;
+        background-color: #f1f1f1;
+        height: 100vh;
+        gap: 3rem;}
     }
 
 `
@@ -52,4 +76,25 @@ export const NavLinkStyled = styled(NavLink)`
         padding: 0.5rem;
         border-radius: 5px;
     }
+
+    @media screen and (max-width: 768px) {
+        width: 100vw;
+        text-align: center;
+        margin: 0 auto;
+    }
 `
+
+export const Bars = styled(FaBars)`
+    font-size: 30px;
+    cursor: pointer;
+    @media screen and (min-width: 768px) {
+        display: none;
+    }
+`
+
+export const BtnBars = styled.button`
+
+    @media screen and (min-width: 768px) {
+        display: none;
+    }
+    `
