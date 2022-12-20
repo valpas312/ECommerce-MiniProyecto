@@ -10,7 +10,6 @@ const Header = () => {
     const response = await axios
       .get("https://fakestoreapi.com/products/categories")
       .catch((err) => console.log("Error: ", err));
-    console.log(response.data);
     setCategories(response.data);
   };
 
@@ -21,7 +20,7 @@ const Header = () => {
   return (
     <HeaderContainer>
       <NavLink to="/">
-        <h1>Header</h1>
+        <h1>Home</h1>
       </NavLink>
       <HeaderList>
         {categories.map((category, index) => {
@@ -31,6 +30,9 @@ const Header = () => {
             </NavLinkStyled>
           );
         })}
+        <NavLinkStyled to="/cart">
+          <li>Cart</li>
+        </NavLinkStyled>
       </HeaderList>
     </HeaderContainer>
   );

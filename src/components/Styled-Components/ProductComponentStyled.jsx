@@ -14,7 +14,7 @@ export const ProductsContainer = styled.div`
 
 export const ProductCard = styled.div`
     width: 300px;
-    height: 300px;
+    height: 350px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 1rem;
     display: flex;

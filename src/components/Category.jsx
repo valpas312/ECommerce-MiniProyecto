@@ -6,14 +6,12 @@ import { ProductCard, ProductsContainer, LinkStyled } from './Styled-Components/
 
 const Category = () => {
     const { categoryID } = useParams()
-    console.log(categoryID)
     
     const [categories, setCategories] = useState([])
 
     const fetchCategory = async () => {
         const response = await axios.get(`https://fakestoreapi.com/products/category/${categoryID}`)
         .catch(err => console.log('Error: ', err))
-        console.log(response.data)
         setCategories(response.data)
     }
 
@@ -25,8 +23,8 @@ const Category = () => {
     } , [categoryID])
 
   return (<>
-
-  <ProductsContainer>
+  {
+    categories.length === 0 ? <h1 style={{marginTop: '15vh'}}>Loading...</h1> : <ProductsContainer>
     {categories.map(product => {
       const {id, title, image, price, category} = product
       return (
@@ -44,6 +42,8 @@ const Category = () => {
     })
     }
   </ProductsContainer>
+  }
+  
   </>
   )
 }

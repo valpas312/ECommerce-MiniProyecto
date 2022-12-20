@@ -6,7 +6,6 @@ import { setProducts } from '../redux/actions/productActions'
 
 const ProductListing = () => {
   const products = useSelector(state => state.allProducts.products)
-  console.log(products)
 
   const dispatch = useDispatch()
 
@@ -17,7 +16,6 @@ const ProductListing = () => {
       console.log('Err', err)
     })
     dispatch(setProducts(response.data))
-    console.log(response.data)
   }
 
   useEffect(() => {
@@ -25,7 +23,9 @@ const ProductListing = () => {
   }, [])
   
   return (<>
-    <ProductComponent/>
+    {
+      products.length === 0 ? <h1 style={{marginTop: '15vh'}}>Loading...</h1> : <ProductComponent/>
+    }
   </>
   )
 }
