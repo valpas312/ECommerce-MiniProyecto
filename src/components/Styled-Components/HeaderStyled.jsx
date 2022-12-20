@@ -14,6 +14,8 @@ export const HeaderContainer = styled.div`
     top: 0;
     left: 0;
     z-index: 1000;
+
+    
 `
 
 export const HeaderList = styled.ul`
@@ -37,6 +39,7 @@ export const HeaderList = styled.ul`
             border-radius: 5px;
         }
     }
+
 `
 
 export const NavLinkStyled = styled(NavLink)`

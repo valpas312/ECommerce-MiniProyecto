@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../redux/actions/cartActions";
 import { CartContainer } from "./Styled-Components/CartStyled";
@@ -11,8 +11,13 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
 
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalQuantity, setTotalQuantity] = useState(0);
+
   const handleRemoveFromCart = (product) => {
     dispatch(removeFromCart(product));
+    setTotalPrice(totalPrice - (product.price * product.quantity));
+    setTotalQuantity(totalQuantity - product.quantity);
   };
   return (<>
     {
@@ -25,7 +30,7 @@ const Cart = () => {
             <ProductCard key={id}>
               <img src={image} alt={title} />
               <div>{title}</div>
-              <div>${price * quantity}</div>
+              <div>${(price * quantity).toFixed(2)}</div>
               <div>{category}</div>
               <div>Quantity:{quantity}</div>
               <button onClick={() => handleRemoveFromCart(product)}>Remove</button>
