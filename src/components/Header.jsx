@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { HeaderContainer, HeaderList, NavLinkStyled, Bars, BtnBars } from "./Styled-Components/HeaderStyled";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate} from "react-router-dom";
 import axios from "axios";
 import { BsCartFill } from "react-icons/bs";
 
@@ -23,6 +23,13 @@ const Header = () => {
   const handleclick = () => {
     setClicked(!clicked);
   }
+
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem('userToken');
+    navigate('/login')
+  }
   return (
     <HeaderContainer>
       <NavLink to="/">
@@ -43,6 +50,7 @@ const Header = () => {
       <BtnBars onClick={handleclick}>
       <Bars/>
       </BtnBars>
+      <button onClick={logout}>Logout</button>
     </HeaderContainer>
   );
 };

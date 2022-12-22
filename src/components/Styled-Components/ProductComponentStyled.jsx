@@ -34,6 +34,12 @@ export const ProductCard = styled.div`
     img {
         width: 7rem;
     }
+
+    @media screen and (max-width: 768px) {
+        :hover{
+            transform: none;
+        }
+    }
 `
 
 export const LinkStyled = styled(Link)`
