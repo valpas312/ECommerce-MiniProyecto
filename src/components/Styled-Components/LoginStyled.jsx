@@ -20,7 +20,7 @@ export const LoginContainer = styled.div`
     justify-content: center;
     gap: 2rem;
     width: 100%;
-    max-width: 400px;
+    max-width: 300px;
     margin: 0 auto;
     padding: 1rem;
     border: 1px solid #ccc;

@@ -43,7 +43,7 @@ const Category = () => {
         <div style={{ marginTop: "15vh", textAlign: "center" }}>
           <h1>You must be logged in to add items to your cart</h1>
           <h2>
-            Click <a href="/login">here</a> to login
+            Click <LinkStyled to={'/login'}>here</LinkStyled> to login
           </h2>
         </div>
       ) : null}

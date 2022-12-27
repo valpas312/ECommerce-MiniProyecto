@@ -8,6 +8,8 @@ import {
 } from "./Styled-Components/ProductComponentStyled";
 
 const Cart = () => {
+  const [token, setToken] = useState(localStorage.getItem("userToken") ?? null);
+
   const cart = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
 

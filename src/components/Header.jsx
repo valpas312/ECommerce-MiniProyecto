@@ -59,7 +59,7 @@ const Header = () => {
         ) : (
           <button onClick={logout}>Logout</button>
         )}
-        <NavLinkStyled to="/cart">
+        <NavLinkStyled to={token == null ? "/login" : "/cart"}>
           <li onClick={handleclick}>
             <BsCartFill />
           </li>
