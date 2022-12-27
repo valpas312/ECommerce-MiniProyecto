@@ -1,36 +1,57 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { ProductCard, ProductsContainer, LinkStyled } from './Styled-Components/ProductComponentStyled'
-import { addToCart } from '../redux/actions/cartActions'
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  ProductCard,
+  ProductsContainer,
+  LinkStyled,
+} from "./Styled-Components/ProductComponentStyled";
+import { addToCart } from "../redux/actions/cartActions";
 
 const ProductComponent = () => {
-  const products = useSelector(state => state.allProducts.products)
-  const dispatch = useDispatch()
+  const [token, setToken] = useState(localStorage.getItem("userToken") ?? null);
+
+  const products = useSelector((state) => state.allProducts.products);
+  const dispatch = useDispatch();
 
   const handleAddToCart = (product) => {
-    dispatch(addToCart(product))
-  }
-  
-  return (<ProductsContainer>
-    {products.map(product => {
-      const {id, title, image, price, category} = product
-      return (
+    dispatch(addToCart(product));
+  };
+
+  return (
+    <>
+      {token == null ? (
+        <div style={{ marginTop: "15vh", textAlign: "center" }}>
+          <h1>You must be logged in to add items to your cart</h1>
+          <h2>
+            Click <a href="/login">here</a> to login
+          </h2>
+        </div>
+      ) : null}
+      <ProductsContainer>
+        {products.map((product) => {
+          const { id, title, image, price, category } = product;
+          return (
             <ProductCard key={id}>
               <LinkStyled to={`/product/${id}`}>
-                <img src={image} alt={title}/>
-              <div>
-                <div>{title}</div>
-                <div>${price}</div>
-                <div>{category}</div>
-              </div>
+                <img src={image} alt={title} />
+                <div>
+                  <div>{title}</div>
+                  <div>${price}</div>
+                  <div>{category}</div>
+                </div>
               </LinkStyled>
-              <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
+              <button
+                disabled={token == null ? true : false}
+                onClick={() => handleAddToCart(product)}
+              >
+                Add to Cart
+              </button>
             </ProductCard>
-      )
-    })
-    }
-  </ProductsContainer>
-  )
-}
+          );
+        })}
+      </ProductsContainer>
+    </>
+  );
+};
 
-export default ProductComponent
+export default ProductComponent;

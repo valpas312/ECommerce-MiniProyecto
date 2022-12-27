@@ -2,10 +2,10 @@ import { useState } from "react";
 import axios from "axios";
 import { LoginContainer } from "./Styled-Components/LoginStyled";
 
-const Login = ({token, setToken}) => {
+const Login = ({ token, setToken }) => {
   const handleNavigate = () => {
-    window.location.assign('/register')
-  }
+    window.location.assign("/register");
+  };
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -24,7 +24,7 @@ const Login = ({token, setToken}) => {
         console.log(res);
         localStorage.setItem("userToken", res.data.token);
         setToken(res.data.token);
-        window.location.assign('/')
+        window.location.assign("/");
       })
       .catch((err) => {
         console.log(err);
@@ -35,7 +35,7 @@ const Login = ({token, setToken}) => {
   return (
     <LoginContainer>
       <h1>Login</h1>
-      <form onSubmit={(e) => e.preventDefault() }>
+      <form onSubmit={(e) => e.preventDefault()}>
         <label htmlFor="username">Username</label>
         <input
           type="text"
@@ -53,7 +53,9 @@ const Login = ({token, setToken}) => {
           required
         />
         {error && <p style={{ color: "red" }}>{error}</p>}
-        <button type="submit" onClick={fetchUser}>Login</button>
+        <button type="submit" onClick={fetchUser}>
+          Login
+        </button>
       </form>
 
       {/* <p>Or 
