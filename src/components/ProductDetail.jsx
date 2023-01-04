@@ -20,6 +20,7 @@ const ProductDetail = () => {
 
   const handleAddToCart = (id) => {
     dispatch(addToCart(id));
+    alert(`${title} added to cart`);
   };
 
   const fetchProductDetail = async () => {
@@ -42,16 +43,18 @@ const ProductDetail = () => {
       ) : (
         <ProductDetailContainer>
           <img src={image} alt={title} />
-          <div>{title}</div>
-          <div>${price}</div>
-          <div>{category}</div>
-          <div>{description}</div>
+          <div className="product__info">
+          <div className="product__title">{title}</div>
+          <div className="product__price">${price}</div>
+          <div className="product__rating">{category}</div>
+          <div className="product__description">{description}</div>
           <button
             disabled={token == null ? true : false}
             onClick={() => handleAddToCart(product)}
           >
             Add to cart
           </button>
+        </div>
         </ProductDetailContainer>
       )}
       {token == null ? (

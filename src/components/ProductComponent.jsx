@@ -12,11 +12,7 @@ const ProductComponent = () => {
 
   const products = useSelector((state) => state.allProducts.products);
   const dispatch = useDispatch();
-
-  const handleAddToCart = (product) => {
-    dispatch(addToCart(product));
-  };
-
+  
   return (
     <>
       {token == null ? (
@@ -29,6 +25,10 @@ const ProductComponent = () => {
       ) : null}
       <ProductsContainer>
         {products.map((product) => {
+          const handleAddToCart = (product) => {
+            dispatch(addToCart(product));
+            alert(`${title} added to cart`);
+          };
           const { id, title, image, price, category } = product;
           return (
             <ProductCard key={id}>

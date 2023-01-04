@@ -8,16 +8,11 @@ import {
 } from "./Styled-Components/ProductComponentStyled";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/actions/cartActions";
-import Login from "./Login";
 
 const Category = () => {
   const [token, setToken] = useState(localStorage.getItem("userToken") ?? null);
 
   const dispatch = useDispatch();
-
-  const handleAddToCart = (id) => {
-    dispatch(addToCart(id));
-  };
 
   const { categoryID } = useParams();
 
@@ -43,7 +38,7 @@ const Category = () => {
         <div style={{ marginTop: "15vh", textAlign: "center" }}>
           <h1>You must be logged in to add items to your cart</h1>
           <h2>
-            Click <LinkStyled to={'/login'}>here</LinkStyled> to login
+            Click <LinkStyled to={"/login"}>here</LinkStyled> to login
           </h2>
         </div>
       ) : null}
@@ -53,6 +48,10 @@ const Category = () => {
         <ProductsContainer>
           {categories.map((product) => {
             const { id, title, image, price, category } = product;
+            const handleAddToCart = (product) => {
+              dispatch(addToCart(product));
+              alert(`${title} added to cart`);
+            };
             return (
               <ProductCard key={id}>
                 <LinkStyled to={`/product/${id}`}>
