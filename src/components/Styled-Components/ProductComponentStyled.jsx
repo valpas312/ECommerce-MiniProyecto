@@ -28,6 +28,8 @@ export const ProductCard = styled.div`
   &:hover {
     background-color: #f1f1f1;
     transform: scale(1.02);
+    filter: brightness(1.1);
+    mix-blend-mode: multiply;
   }
 
   img {
